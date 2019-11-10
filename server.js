@@ -12,13 +12,21 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('app/public'));
 
-//move this to htmlRoutes.js after refactoring
-
 
 //move this to apiRoutes.js after refactoring
 app.get('/api/friends', (request, response) => {
     return response.json(friends);
 });
+
+/* app.get('/api/friends/:id', (request, response) => {
+    let memberId = request.params.id;
+    friends.forEach(element => {
+        console.log(element.id);
+        if (element.id === memberId) {
+            response.send(element);
+        }
+    });
+}); */
 
 app.post('/api/friends', (request, response) => {
     const friend = request.body;

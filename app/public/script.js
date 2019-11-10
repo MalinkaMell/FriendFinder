@@ -175,7 +175,7 @@ $(document).ready(function () {
                         memberCardDiv.append(memberImage);
                         memberName.text(element1.name);
                         memberImage.attr("src", element1.photo);
-                        memberImage.attr("width", "150px")
+                        memberImage.attr("width", "200px")
                         $(".modal-body").append(memberCardDiv)
 
                     }
