@@ -13,7 +13,13 @@ $(document).ready(function () {
         "You feel more energetic after spending time with a group of people"
     ];
 
-    let scores = []; //pushing here only scores arrays
+    let newMemberId = [];
+
+    let scoresArr = []; //pushing here only scores arrays
+
+    $.get("/api/friends", function (data) {
+        newMemberId.push(data.length + 1);
+    });
 
     function displayQuestions(array) {
         array.forEach((element, index) => {
@@ -58,33 +64,39 @@ $(document).ready(function () {
     }
 
     $("#submit").on("click", function (event) {
-
+        event.preventDefault();
+        $(".modal-body").empty();
         for (let i = 0; i <= 10; i++) {
 
             if ($("#" + i).val() === "Select an option") {
-                alert("all selects are required");
+                console.log($("#" + i).attr("id"));
+                $("#" + i).addClass("text-red");
+                alert("Please, fill out all the fields before submitting!");
                 return false;
             }
 
         }
 
-        event.preventDefault();
         if ($("#name").val() === "" || $("#picture").val() === "") {
-            alert("all fields are required")
+            alert("Please, fill out all the fields before submitting!")
             return false;
         }
 
         //iterating question array
         for (let i = 0; i < questionsArray.length; i++) {
             let selected = $(`#${i} option:selected`).val(); // finding selected answer value
-            scores.push(selected); //pushing selected option to scores array
+            scoresArr.push(selected); //pushing selected option to scores array
         }
+
         //creating object to post to my router
         let newUser = {
+            id: newMemberId[0],
             name: $("#name").val(),
             photo: $("#picture").val(),
-            scores: scores
+            scores: scoresArr
         } //posting
+        console.log(newUser);
+
         $.post("/api/friends", newUser)
             .then(function (data) {
                 console.log(data);
@@ -94,15 +106,12 @@ $(document).ready(function () {
         compare(newUser);
 
     })
-
     function compare(user) {
         $.get("/api/friends", function (data) {
             let indexes = [];
             let closest = 0;
             let indexOfClosestResult = 0;
-            // let userScores = user.scores;
-            //console.log(userScores);
-            //  console.log(userScores);
+            console.log(data);
 
             let uScores = []; //all my members scores
 
@@ -158,7 +167,6 @@ $(document).ready(function () {
         })
     }
 
-
     function showRes(arr) {
 
 
@@ -166,17 +174,26 @@ $(document).ready(function () {
             data.forEach((element1, index1) => {
                 arr.forEach((element2, index2) => {
                     if (index1 === element2) {
-                        
+
                         let memberCardDiv = $("<div>");
                         let memberName = $("<h4>");
                         let memberImage = $("<img>");
+                        let memberProfileLink = $("<button>");
+                        let hr = $("<hr>");
                         memberCardDiv.addClass("col-auto");
                         memberCardDiv.append(memberName);
                         memberCardDiv.append(memberImage);
+                        memberCardDiv.append(memberProfileLink);
+                        memberCardDiv.append(hr);
                         memberName.text(element1.name);
+                        memberName.attr("class", "text-center");
                         memberImage.attr("src", element1.photo);
-                        memberImage.attr("width", "200px")
-                        $(".modal-body").append(memberCardDiv)
+                        memberImage.attr("class", "img-fluid");
+                        memberImage.attr("style", "max-height: 200px");
+                        memberProfileLink.addClass("btn btn-primary btn-block my-2 text-center check-profile");
+                        memberProfileLink.attr("id", element1.id);
+                        memberProfileLink.text("Check the profile!");
+                        $(".modal-body").append(memberCardDiv);
 
                     }
                 })
@@ -184,13 +201,29 @@ $(document).ready(function () {
 
         });
 
-        
-
-        
-
     }
-    //call my function
+
+
+
+
     displayQuestions(questionsArray);
 
 
-})
+    $(document).on("click", ".check-profile", function (event) {
+        console.log("click");
+
+        event.preventDefault();
+        let memberId = $(this).attr("id");
+        $.get(`/api/friends/${memberId}`, function (data) {
+            console.log(data);
+            if (data) {
+                window.open(`/api/friends/${memberId}`, '_blank');
+            }
+            else {
+                console.log("nooooo");
+
+            }
+        });
+
+    });
+});

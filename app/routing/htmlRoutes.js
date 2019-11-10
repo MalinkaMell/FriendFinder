@@ -10,6 +10,8 @@ module.exports = function (app) {
         response.sendFile(path.join(__dirname, '../public/survey.html')); // rout to survey
     });
 
+    
+
     /* app.get('*', (request, response) => {
         response.sendFile(path.join(__dirname, '../public/home.html')); // rout to homepage from everything else
     }); */

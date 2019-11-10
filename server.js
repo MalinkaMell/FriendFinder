@@ -4,8 +4,8 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 const friends = require('./app/data/friends');
-const htmlRoutes = require('./app/routing/htmlRoutes')(app);
-//const apiRoutes = require('./app/routing/apiRoutes')(app);
+require('./app/routing/htmlRoutes')(app);
+//require('./app/routing/apiRoutes')(app);
 
 
 app.use(express.json());
@@ -18,7 +18,7 @@ app.get('/api/friends', (request, response) => {
     return response.json(friends);
 });
 
-/* app.get('/api/friends/:id', (request, response) => {
+ app.get('/api/friends/:id', (request, response) => {
     let memberId = request.params.id;
     friends.forEach(element => {
         console.log(element.id);
@@ -26,7 +26,7 @@ app.get('/api/friends', (request, response) => {
             response.send(element);
         }
     });
-}); */
+}); 
 
 app.post('/api/friends', (request, response) => {
     const friend = request.body;

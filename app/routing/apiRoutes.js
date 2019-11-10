@@ -7,13 +7,27 @@ This route will also be used to handle the compatibility logic. */
 const friends = require('../data/friends');
 
 module.exports = function (app) {
-    app.get('/api/friends', (request, response) => {
-        return response.json(friends);
-    });
+    
+//move this to apiRoutes.js after refactoring
+app.get('/api/friends', (request, response) => {
+    return response.json(friends);
+});
 
-    app.post('/api/friends', (request, response) => {
-        const friend = request.body;
-        friends.push(friend);
-        response.json(friend);
+app.get('/api/friends/:id', (request, response) => {
+    let memberId = request.params.id;
+    friends.forEach(element => {
+        console.log(element.id);
+        if (element.id === memberId) {
+            response.send(element);
+        }
     });
+});  
+
+app.post('/api/friends', (request, response) => {
+    const friend = request.body;
+    console.log(`POST /api/friends called`);
+    console.log(friend);
+    friends.push(friend);
+    response.json(friend);
+});
 }
