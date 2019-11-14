@@ -63,49 +63,6 @@ $(document).ready(function () {
 
     }
 
-    $("#submit").on("click", function (event) {
-        event.preventDefault();
-        $(".modal-body").empty();
-        for (let i = 0; i <= 10; i++) {
-
-            if ($("#" + i).val() === "Select an option") {
-                console.log($("#" + i).attr("id"));
-                $("#" + i).addClass("text-red");
-                alert("Please, fill out all the fields before submitting!");
-                return false;
-            }
-
-        }
-
-        if ($("#name").val() === "" || $("#picture").val() === "") {
-            alert("Please, fill out all the fields before submitting!")
-            return false;
-        }
-
-        //iterating question array
-        for (let i = 0; i < questionsArray.length; i++) {
-            let selected = $(`#${i} option:selected`).val(); // finding selected answer value
-            scoresArr.push(selected); //pushing selected option to scores array
-        }
-
-        //creating object to post to my router
-        let newUser = {
-            id: newMemberId[0],
-            name: $("#name").val(),
-            photo: $("#picture").val(),
-            scores: scoresArr
-        } //posting
-        console.log(newUser);
-
-        $.post("/api/friends", newUser)
-            .then(function (data) {
-                console.log(data);
-                alert("added!")
-            });
-        //calling compare answeers function
-        compare(newUser);
-
-    })
     function compare(user) {
         $.get("/api/friends", function (data) {
             let indexes = [];
@@ -169,7 +126,6 @@ $(document).ready(function () {
 
     function showRes(arr) {
 
-
         $.get("/api/friends", function (data) {
             data.forEach((element1, index1) => {
                 arr.forEach((element2, index2) => {
@@ -188,9 +144,9 @@ $(document).ready(function () {
                         memberName.text(element1.name);
                         memberName.attr("class", "text-center");
                         memberImage.attr("src", element1.photo);
-                        memberImage.attr("class", "img-fluid");
+                        memberImage.attr("class", "img-fluid text-center");
                         memberImage.attr("style", "max-height: 200px");
-                        memberProfileLink.addClass("btn btn-primary btn-block my-2 text-center check-profile");
+                        memberProfileLink.addClass("btn btn-pink btn-block my-2 text-center check-profile");
                         memberProfileLink.attr("id", element1.id);
                         memberProfileLink.text("Check the profile!");
                         $(".modal-body").append(memberCardDiv);
@@ -203,11 +159,49 @@ $(document).ready(function () {
 
     }
 
+    $("#submit").on("click", function (event) {
+        event.preventDefault();
+        $(".modal-body").empty();
+        for (let i = 0; i <= 10; i++) {
 
+            if ($("#" + i).val() === "Select an option") {
+                console.log($("#" + i).attr("id"));
+                $("#" + i).addClass("text-red");
+                alert("Please, fill out all the fields before submitting!");
+                return false;
+            }
 
+        }
 
-    displayQuestions(questionsArray);
+        if ($("#name").val() === "" || $("#picture").val() === "") {
+            alert("Please, fill out all the fields before submitting!")
+            return false;
+        }
 
+        //iterating question array
+        for (let i = 0; i < questionsArray.length; i++) {
+            let selected = $(`#${i} option:selected`).val(); // finding selected answer value
+            scoresArr.push(selected); //pushing selected option to scores array
+        }
+
+        //creating object to post to my router
+        let newUser = {
+            id: newMemberId[0],
+            name: $("#name").val(),
+            photo: $("#picture").val(),
+            scores: scoresArr
+        } //posting
+        console.log(newUser);
+
+        $.post("/api/friends", newUser)
+            .then(function (data) {
+                console.log(data);
+                alert("added!")
+            });
+        //calling compare answeers function
+        compare(newUser);
+
+    })
 
     $(document).on("click", ".check-profile", function (event) {
         console.log("click");
@@ -226,4 +220,7 @@ $(document).ready(function () {
         });
 
     });
+
+    displayQuestions(questionsArray);
+
 });

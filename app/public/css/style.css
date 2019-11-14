@@ -1,9 +1,3 @@
-/*
-font-family: 'Amatic SC', cursive;
-font-family: 'Gloria Hallelujah', cursive;
-font-family: 'Bangers', cursive;
-*/
-
 body {
     background: #000000 url("/images/bg-dark.jpg") top left repeat;
     font-size: 18px!important;
@@ -13,28 +7,30 @@ body {
     font-family: 'Gloria Hallelujah', cursive;
     text-shadow: 2px 2px 2px #00000090;
     font-weight: bold;
-    color: #e8d0da;
+    color: #ef106f;
 }
 .jumbotron {
     padding: 1rem;
     box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
-    color: #e8d0da;
-    background: #a95864;
-    
+    color: #4c1827;
+    background: #ff9eb4 url("/images/gbg.png") top right no-repeat ;
 }
-.btn-primary {
+.btn-pink {
+    color: #e8d0da;
+    font-weight: bold;
     background-color:#ef106f;
     border-color: #ef106f;
     font-family: 'Gloria Hallelujah', cursive;
     box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
 }
-.btn-primary:hover {
-    background-color:#e8d0da;
-    border-color: #ef106f;
-    color: #ef106f;   
+.btn-pink:hover, .btn-pink:focus, .btn-pink:active {
+    background-color:#e8d0da!important;
+    border-color: #ef106f!important;
+    color: #ef106f!important;   
+    box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
 }
 a {
-    color: #e8d0da;
+    color: #4c1827;
 }
 a:hover{
     color: #ef106f;
@@ -45,14 +41,14 @@ a:hover{
     color: #e8d0da;
 }
 .card-header{
-    background-color: #f8b3b7;
+    background-color:  #cc7e90;
     color: #ef106f;
     font-weight: bold!important;
 }
 .card{
     border:0;
-    background-color: #f8b3b7;
-    color: #ef106f;
+    background-color:transparent;
+    color: #4c1827;
 }
 .form-control {
     background-color: #feeae9;
@@ -72,9 +68,9 @@ a:hover{
     color: #e8d0da;
 }
 .modal-content{
-    color: #e8d0da;
-    background: #a95864;
-    border: 1px solid #ef106f;
+    color: #4c1827;
+    background: #ff9eb4;
+    border: 1px solid #4c1827;
 }
 .modal-footer{
     border-color: #e8d0da;

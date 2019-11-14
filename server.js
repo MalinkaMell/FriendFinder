@@ -4,14 +4,16 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 const friends = require('./app/data/friends');
-require('./app/routing/htmlRoutes')(app);
-//require('./app/routing/apiRoutes')(app);
+const htmlRoutes = require('./app/routing/htmlRoutes');
+const apiRoutes = require('./app/routing/apiRoutes');
 
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('app/public'));
 
+htmlRoutes(app);
+apiRoutes(app);
 
 //move this to apiRoutes.js after refactoring
 app.get('/api/friends', (request, response) => {
