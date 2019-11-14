@@ -167,14 +167,18 @@ $(document).ready(function () {
             if ($("#" + i).val() === "Select an option") {
                 console.log($("#" + i).attr("id"));
                 $("#" + i).addClass("text-red");
-                alert("Please, fill out all the fields before submitting!");
+                $('#confirmationModal').modal('show');
+                $('#modal-message').text('Please, fill out all the fields before submitting!');
+                //alert("Please, fill out all the fields before submitting!");
                 return false;
             }
 
         }
 
         if ($("#name").val() === "" || $("#picture").val() === "") {
-            alert("Please, fill out all the fields before submitting!")
+            $('#confirmationModal').modal('show');
+            $('#modal-message').text('Please, fill out all the fields before submitting!');
+            //alert("Please, fill out all the fields before submitting!")
             return false;
         }
 
@@ -196,7 +200,7 @@ $(document).ready(function () {
         $.post("/api/friends", newUser)
             .then(function (data) {
                 console.log(data);
-                alert("added!")
+                //alert("added!")
             });
         //calling compare answeers function
         compare(newUser);
