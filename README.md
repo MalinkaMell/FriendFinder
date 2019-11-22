@@ -18,3 +18,7 @@ In this activity, you'll build a compatibility-based "FriendFinder" application 
     * A POST routes /api/friends. This will be used to handle incoming survey results. This route will also be used to handle the compatibility logic.
 
 You should save your application's data inside of app/data/friends.js as an array of objects. Each of these objects should roughly follow the format below.
+
+**Optimized for 1920x1080 screen resolution and Google Chrome Version 78**
+
+_Made for University of Arizona Coding Bootcamp, Week-13, November 2019_
