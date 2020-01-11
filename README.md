@@ -1,6 +1,6 @@
 # Friend Finder - Node and Express Servers
 
-[Project demo](https://hidden-stream-57928.herokuapp.com/)
+![Banner](images/githubtpl.png)
 
 ### Overview
 
@@ -18,6 +18,21 @@ In this activity, you'll build a compatibility-based "FriendFinder" application 
     * A POST routes /api/friends. This will be used to handle incoming survey results. This route will also be used to handle the compatibility logic.
 
 You should save your application's data inside of app/data/friends.js as an array of objects. Each of these objects should roughly follow the format below.
+
+### Technologies and npm packages used
+
+* Express
+* JavaScript
+* Node.js
+* jQuery
+* AJAX
+* Bootstrap
+
+---
+
+[Project demo](https://hidden-stream-57928.herokuapp.com/)
+
+---
 
 **Optimized for 1920x1080 screen resolution and Google Chrome Version 78**
 
