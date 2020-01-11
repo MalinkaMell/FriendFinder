@@ -1,6 +1,6 @@
 # Friend Finder - Node and Express Servers
 
-![Banner](images/githubtpl.png)
+![Banner](app/public/images/githubtpl.png)
 
 ### Overview
 
